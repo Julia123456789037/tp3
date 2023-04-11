@@ -2,8 +2,8 @@ public class TestCryptoMarche {
     public static void main(String[] args) {
 
         //Creation de crypto-monnaie
-        Cryptomonnaie bitcoin  = new Cryptomonnaie("btc", 50000);
-        Cryptomonnaie ethereum = new Cryptomonnaie("eth", 2000);
+        CryptoMonnaie bitcoin  = new CryptoMonnaie("btc", 50000);
+        CryptoMonnaie ethereum = new CryptoMonnaie("eth", 2000);
 
         //Creation de portefeuilles
         Portefeuille antoineBtc = new Portefeuille(bitcoin,  10, "Antoine");

@@ -6,16 +6,16 @@ public class CryptoMarche {
     private static CryptoMarche marche;
 
     private CryptoMarche(){
-        portefeuilles = new ArrayList<Portefeuille>();
+        this.portefeuilles = new ArrayList<Portefeuille>();
     }
 
     public static CryptoMarche getInstance(){
-        if(marche == null){ marche = new CryptoMarche();}
-		return marche;
+        if(CryptoMarche.marche == null){ CryptoMarche.marche = new CryptoMarche();}
+		return CryptoMarche.marche;
     }
 
     public void ajouter(Portefeuille p){
-        portefeuilles.add(p);
+        this.portefeuilles.add(p);
     }
 
     /**
@@ -24,11 +24,18 @@ public class CryptoMarche {
      * @param proprietare
      * @return capital en euros du propriétare.
      */
-    public double capitalEnEuros(String proprietaire){
-        /**
-			FONCTION À IMPLEMENTER
-        **/
-
+    public double capitalEnEuros(String proprietaire)
+    {
+        double rep;
+        rep = 0;
+        if ( this.portefeuilles.size() != 0 )
+        {
+            for ( int cpt=0; cpt < this.portefeuilles.size(); cpt++ )
+            {
+                rep = rep + this.portefeuilles.get(cpt).valeurEnEuros();
+            }
+            return rep;
+        }
         return 0;
     }
 
@@ -37,15 +44,24 @@ public class CryptoMarche {
      * d'un type de devise et calcule le volume total de capital de 
      * cette devise sur le marché 
      * @param monnaie
-     * @return capital total en circulation de la cryptomonnaie (en euros).
+     * @return capital total en circulation de la CryptoMonnaie (en euros).
      */
-    public double capitalMonneaie(Cryptomonnaie monnaie){
-        /**
-			FONCTION À IMPLEMENTER
-        **/
-
+    public double capitalMonneaie(CryptoMonnaie monnaie)
+    {
+        double rep;
+        rep = 0;
+        if ( this.portefeuilles.size() != 0 )
+        {
+            for ( int cpt=0; cpt < this.portefeuilles.size(); cpt++ )
+            {
+                if ( this.portefeuilles.get(cpt).getMonnaie() == monnaie )
+                {
+                    rep = rep + this.portefeuilles.get(cpt).getMontant();
+                }
+            }
+            return rep;
+        }
         return 0;
-
     }
 
     @Override
